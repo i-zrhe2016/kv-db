@@ -1,0 +1,12 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "cf-worker-kv-basic-api",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-05-04",
+	"kv_namespaces": [
+		{
+			"binding": "APP_KV",
+			"id": "0337ca12df054a0abc01201ac2fc96c4"
+		}
+	]
+}

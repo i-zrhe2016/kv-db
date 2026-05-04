@@ -1,0 +1,9 @@
+{"file": ".trellis/workflow.md", "reason": "Project workflow and conventions"}
+{"file": ".trellis/spec/backend/index.md", "reason": "Backend development guide"}
+{"file": ".trellis/spec/backend/directory-structure.md", "reason": "Backend runtime layout and module boundaries"}
+{"file": ".trellis/spec/backend/database-guidelines.md", "reason": "KV binding, key prefix, and repository contract"}
+{"file": ".trellis/spec/backend/error-handling.md", "reason": "JSON error response contract"}
+{"file": ".trellis/spec/backend/logging-guidelines.md", "reason": "Request-boundary logging rules"}
+{"file": ".trellis/spec/backend/quality-guidelines.md", "reason": "Verification and separation-of-concerns baseline"}
+{"file": ".trellis/spec/guides/cross-layer-thinking-guide.md", "reason": "HTTP to service to KV data flow"}
+{"file": ".trellis/spec/guides/code-reuse-thinking-guide.md", "reason": "Shared key and response helpers"}

@@ -1,0 +1,11 @@
+node_modules/
+.wrangler/
+
+# Local env and logs
+.env
+.env.*
+*.log
+
+# Trellis local session state
+.trellis/.current-task
+.trellis/workspace/
