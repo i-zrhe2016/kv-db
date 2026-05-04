@@ -70,6 +70,9 @@ Authorization: Bearer <AUTH_TOKEN>
 Set the Worker secret with Wrangler:
 
 ```bash
+cd /root/kv
+export CLOUDFLARE_API_TOKEN=your_cloudflare_api_token
+export CLOUDFLARE_ACCOUNT_ID=your_cloudflare_account_id
 echo 'your-token' | npx wrangler secret put AUTH_TOKEN
 ```
 
@@ -81,6 +84,19 @@ Example request:
 curl https://your-worker.workers.dev/records \
   -H 'authorization: Bearer your-token'
 ```
+
+## KV Consistency Note
+
+Cloudflare Workers KV is eventually consistent for reads. A write can succeed
+and an immediate follow-up read may briefly return `NOT_FOUND` before the new
+value becomes visible everywhere.
+
+In practice:
+
+- trust the successful `POST` or `PUT` response as the latest value
+- if an immediate `GET` misses, retry after a short delay
+- use a stronger-consistency store such as D1 or Durable Objects if your use
+  case requires immediate read-after-write guarantees
 
 ## One-Click Deploy
 

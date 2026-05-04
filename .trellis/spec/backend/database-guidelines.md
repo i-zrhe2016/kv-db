@@ -27,6 +27,9 @@ Current storage contract:
   raw KV strings.
 - For list operations, use `KVNamespace.list({ prefix })` and then hydrate each
   stored record by key.
+- Treat immediate read-after-write as eventually consistent when using Workers
+  KV; callers should not assume a just-written key is instantly readable
+  everywhere.
 
 ---
 
@@ -59,3 +62,4 @@ If the stored record shape changes:
 - Duplicating the `record:` prefix across multiple modules.
 - Changing the stored payload shape without updating this document and the
   repository contract together.
+- Assuming Workers KV provides strict immediate read-after-write consistency.
