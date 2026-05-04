@@ -4,6 +4,7 @@ node_modules/
 # Local env and logs
 .env
 .env.*
+.dev.vars
 *.log
 
 # Trellis local session state

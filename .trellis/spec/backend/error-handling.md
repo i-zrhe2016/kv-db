@@ -30,6 +30,8 @@ Current error codes in use:
 - `INVALID_JSON`
 - `INVALID_BODY`
 - `INVALID_ID`
+- `UNAUTHORIZED`
+- `AUTH_NOT_CONFIGURED`
 - `NOT_FOUND`
 - `RECORD_EXISTS`
 - `INTERNAL_ERROR`
@@ -39,6 +41,8 @@ Current error codes in use:
 ## Error Handling Patterns
 
 - Validate request body and route params before calling the repository.
+- Validate bearer authentication at the request boundary before protected route
+  handlers run.
 - Let repository and service modules throw `HttpError` for expected failures.
 - Catch errors once in the Worker fetch handler, log request context, and then
   convert the failure through `errorResponse()`.
@@ -66,6 +70,7 @@ Rules:
 - Keep `error.code` machine-readable.
 - Keep `error.message` client-safe.
 - Never expose stack traces or provider internals.
+- Do not reveal configured token values or auth secrets in any error response.
 
 ---
 

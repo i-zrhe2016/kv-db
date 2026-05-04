@@ -1,5 +1,6 @@
 export interface Env {
   APP_KV: KVNamespace;
+  AUTH_TOKEN: string;
 }
 
 export interface RecordData {

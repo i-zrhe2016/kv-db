@@ -42,6 +42,7 @@ Current verification baseline:
 - Run `npm run check` for type validation.
 - Run `wrangler dev` and exercise CRUD endpoints manually or via HTTP client.
 - Test success cases plus at least one invalid-body and not-found path.
+- For protected routes, test both missing-token and valid-token requests.
 - For deployment UX changes, verify the README deployment instructions still
   match the current Cloudflare workflow.
 

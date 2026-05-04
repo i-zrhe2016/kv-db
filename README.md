@@ -37,8 +37,14 @@ Update:
 ## Local Development
 
 1. Install dependencies: `npm install`
-2. Generate Worker types if needed: `npm run cf-typegen`
-3. Start local dev server: `npm run dev`
+2. Create `.dev.vars`:
+
+```text
+AUTH_TOKEN=your-token
+```
+
+3. Generate Worker types if needed: `npm run cf-typegen`
+4. Start local dev server: `npm run dev`
 
 Cloudflare currently recommends `wrangler.jsonc` for new projects, and Workers
 KV bindings are configured in the Wrangler config file.
@@ -50,6 +56,31 @@ With current Wrangler behavior, local development can create/use local backing
 storage automatically, and deploy flows can create or attach resources depending
 on how you publish. If you want this Worker bound to a specific existing KV
 namespace, add its `id` (and optionally `preview_id`) to `wrangler.jsonc`.
+
+## Authentication
+
+All `/records` routes require:
+
+```text
+Authorization: Bearer <AUTH_TOKEN>
+```
+
+`GET /health` remains public.
+
+Set the Worker secret with Wrangler:
+
+```bash
+echo 'your-token' | npx wrangler secret put AUTH_TOKEN
+```
+
+For local development with `wrangler dev`, put the same value in `.dev.vars`.
+
+Example request:
+
+```bash
+curl https://your-worker.workers.dev/records \
+  -H 'authorization: Bearer your-token'
+```
 
 ## One-Click Deploy
 

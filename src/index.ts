@@ -1,3 +1,4 @@
+import { requireAuth } from "./auth";
 import { errorResponse, jsonResponse, readJsonBody } from "./http";
 import { RecordService } from "./record-service";
 import type { Env } from "./types";
@@ -17,6 +18,7 @@ function notFound(): Response {
 export default {
   async fetch(request, env): Promise<Response> {
     const service = new RecordService(env as Env);
+    const typedEnv = env as Env;
     const url = new URL(request.url);
     const pathSegments = url.pathname.split("/").filter(Boolean);
 
@@ -31,6 +33,8 @@ export default {
       if (pathSegments[0] !== "records") {
         return notFound();
       }
+
+      requireAuth(request, typedEnv);
 
       if (request.method === "GET" && pathSegments.length === 1) {
         const records = await service.listRecords();

@@ -47,6 +47,7 @@ Prefer object-style logs over interpolated strings.
 - Unexpected failures that reach the fetch handler
 - Storage access failures
 - Configuration/runtime issues that prevent the Worker from serving requests
+- Authentication failures only as status/context, never with raw token values
 
 ---
 
